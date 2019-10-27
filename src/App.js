@@ -10,16 +10,21 @@ const store = {
      allCards: {},
    }
 
- const lists = store.lists.map(list => {
-   return <List key={list.id} header={list.header} cardIds={list.cardIds}/>
- })
+*/
 
 function App(props) {
+  const lists = props.store.lists.map(list => {
+    const cards = list.cardIds.map(cardId => {
+      return props.store.allCards[cardId]
+    })
+    return <List key={list.id} header={list.header} cards={cards}/>
+
+  })
 
   return (
     <main className='App'>
       <header className="App-header">
-        <h1>Trelloyes!</h1>
+    <h1>Trelloyes!</h1>
       </header>
       <div className="App-list">
       {lists}
@@ -28,7 +33,11 @@ function App(props) {
     </main>
   );
 }
-*/
+
+
+
+/*
+
 class App extends Component {
   static defaultProps = {
     store: {
@@ -56,5 +65,5 @@ class App extends Component {
       </main>
     );
   }
-}
+}*/
 export default App;
